@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img class="logo" src="./assets/logo.jpg" height="200">
+    <img class="logo" src="assets/logo.jpg" height="200">
     <h1>
       Welcome to Palet town!
     </h1>
