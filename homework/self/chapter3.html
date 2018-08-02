@@ -1,0 +1,26 @@
+<html>
+<head>
+    <title>Greetings User</title>
+</head>
+<body>
+<div id="app">
+    <h1 v-if="gender === 'male' || gender === 'female'">Hello, {{prefix}} {{name}}</h1>
+    <h1 v-else>So you can't decide. Fine!</h1>
+    Enter your gender:<br>
+    <input type="text" name="gender" v-model="gender"><br>
+    Enter your name:<br>
+    <input type="text" name="name" v-model="name">
+</div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.1/vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            gender: 'male',
+            prefix: this.gender === 'male' ? 'Mr' : 'Ms',
+            name: 'Frank'
+        }
+    })
+</script>
+</html>
