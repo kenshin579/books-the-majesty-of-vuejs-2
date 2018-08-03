@@ -1,56 +1,34 @@
 <html>
 <head>
-  <title>Calculator</title>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <title>The Gotham Gazette</title>
 </head>
 <body>
-  <div class="container">
-    <h1>Let's hear some famous stories! ({{famous.length}})</h1>
+<div class="container">
+    <h1>Real identities of Super Heroes!</h1>
     <ul class="list-group">
-      <li v-for="story in famous"
-      class="list-group-item"
-      >
-      {{ story.writer }} said "{{ story.plot }}"
-      and upvoted {{ story.upvotes }} times.
-    </li>
-  </ul>
+        <li v-for="hero in heroes" class="list-group-item">
+            {{hero | snitch}}
+        </li>
+    </ul>
 </div>
 </body>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.1/vue.js"></script>
 <script type="text/javascript">
-new Vue({
-  el: '.container',
-  data: {
-    stories: [
-      {
-        plot: "I crashed my car today!",
-        writer: "Alex",
-        upvotes: 28
-      },
-      {
-        plot: "Yesterday, someone stole my bag!",
-        writer: "John",
-        upvotes: 8
-      },
-      {
-        plot: "Someone ate my chocolate...",
-        writer: "John",
-        upvotes: 51
-      },
-      {
-        plot: "I ate someone's chocolate!",
-        writer: "Alex",
-        upvotes: 74
-      },
-    ]
-  },
-  computed: {
-    famous: function() {
-      return this.stories.filter(function(item){
-        return item.upvotes > 25;
-      });
-    }
-  }
-})
+    Vue.filter('snitch', function (heroes) {
+        return heroes.isObvioulsy + ' is ' + heroes.firstname + ' ' + heroes.lastname + ' in real life!'
+    })
+
+    new Vue({
+        el: '.container',
+        data: {
+            heroes: [
+                {firstname: 'Bruce', lastname: 'Wayne', isObvioulsy: 'Batman'},
+                {firstname: 'Clark', lastname: 'Kent', isObvioulsy: 'Superman'},
+                {firstname: 'Jay', lastname: 'Garrick', isObvioulsy: 'Flash'},
+                {firstname: 'Peter', lastname: 'Parker', isObvioulsy: 'Spider-Man'}
+            ]
+        }
+    })
 </script>
 </html>
