@@ -1,14 +1,14 @@
 <html>
 <head>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <title>Stories</title>
+    <title>This is me</title>
 </head>
 <body>
 <div class="container">
-    <h1>Let's hear some stories!</h1>
+    <h1>This is me!</h1>
     <ul class="list-group">
-        <li v-for="(value, key, index) in story" class="list-group-item">
-            {{index}} : {{key}} : {{value}}
+        <li v-for="(value, key, index) in myself" class="list-group-item">
+            {{index}}: {{key}} = {{value}}
         </li>
     </ul>
 </div>
@@ -18,10 +18,12 @@
     new Vue({
         el: '.container',
         data: {
-            story: {
-                plot: "Someone ate my chocolate...",
-                writer: 'John',
-                upvotes: 47
+            myself: {
+                name: "Kostas",
+                height: '1.73m',
+                weight: '65kg',
+                eyeColor: 'brown',
+                favoriteFood: 'Ntolmas'
             }
         }
     })
