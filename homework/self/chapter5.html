@@ -1,0 +1,59 @@
+<html>
+<head>
+    <title>The Elections</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h1>People of Vue</h1>
+    <ul class="list-group">
+        <li v-for="mayor in mayorCandidates" class="list-group-item">
+            {{mayor.name}} {{mayor.votes}}
+            <button class="btn btn-primary" @click="upvotes(mayor)">Vote</button>
+        </li>
+
+    </ul>
+    <input type="text" placeholder="press 'delete' to reset" @keyup.delete="reset">
+    <h1 v-show="currentMayorName.length !==0">Our mayor is {{currentMayorName}}!</h1>
+</div>
+</body>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.1/vue.js"></script>
+<script type="text/javascript">
+    new Vue({
+        el: '.container',
+        data: {
+            currentMayorName: '',
+            mayorCandidates: [
+                {
+                    name: 'Mr. Black',
+                    votes: 0
+                },
+                {
+                    name: 'Mr. Pink',
+                    votes: 0
+                },
+                {
+                    name: 'Mr. White',
+                    votes: 0
+                },
+                {
+                    name: 'Mr. Brown',
+                    votes: 0
+                }
+            ]
+        },
+        methods: {
+            reset: function () {
+                this.mayorCandidates.forEach(function (mayor) {
+                    mayor.votes = 0;
+                })
+            },
+            upvotes: function (mayor) {
+                mayor.votes++;
+                this.currentMayorName = mayor.name;
+            }
+        }
+
+    });
+</script>
+</html>

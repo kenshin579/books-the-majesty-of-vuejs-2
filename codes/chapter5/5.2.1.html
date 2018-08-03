@@ -19,6 +19,10 @@
         <!-- Notice here the special attribute 'number'
         is passed in order to parse inputs as numbers.-->
         <input v-model.number="b" class="form-control">
+        <button type="submit" @click.prevent="calculate"
+                class="btn btn-primary">
+            Calculate
+        </button>
     </form>
     <h2>Result: {{a}} {{operator}} {{b}} = {{c}}</h2>
     <pre>
@@ -33,22 +37,23 @@
         data: {
             a: 1,
             b: 2,
+            c: null,
             operator: "+",
         },
-        computed: {
-            c: function () {
+        methods: {
+            calculate: function (event) {
                 switch (this.operator) {
                     case "+":
-                        return this.a + this.b
+                        this.c = this.a + this.b
                         break;
                     case "-":
-                        return this.a - this.b
+                        this.c = this.a - this.b
                         break;
                     case "*":
-                        return this.a * this.b
+                        this.c = this.a * this.b
                         break;
                     case "/":
-                        return this.a / this.b
+                        this.c = this.a / this.b
                         break;
                 }
             }
