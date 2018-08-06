@@ -1,0 +1,67 @@
+<html>
+<head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Planet Travels</title>
+</head>
+<body>
+<div id="app">
+    <div class="container">
+        <h1>Where would like to go?</h1>
+        <ul class="list-group">
+            <planet v-for="planet in planets" :planet="planet"></planet>
+        </ul>
+    </div>
+</div>
+<template id="planet-template">
+    <li class="list-group-item">
+        Planet: {{ planet.planetName }} Visited {{ planet.numOfVisited }} times.
+        <button v-show="planet.numOfVisited < 3" @click="visit" class="btn btn-default">
+            Visit
+        </button>
+        <span v-show="planet.visited" class="fa fa-rocket pull-right" style="font-size:36px;" aria-hidden="true"></span>
+    </li>
+</template>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.1/vue.js"></script>
+<script type="text/javascript">
+    Vue.component('planet', {
+        template: "#planet-template",
+        props: ['planet'],
+        methods: {
+            visit: function () {
+                this.planet.numOfVisited += 1;
+                this.planet.visited = true;
+            },
+        }
+    });
+
+    new Vue({
+        el: '#app',
+        data: {
+            planets: [
+                {
+                    planetName: 'Mercury',
+                    numOfVisited: 0,
+                    visited: false
+                },
+                {
+                    planetName: 'Venus',
+                    numOfVisited: 0,
+                    visited: false
+                },
+                {
+                    planetName: 'Mars',
+                    numOfVisited: 0,
+                    visited: false
+                },
+                {
+                    planetName: 'Jupiter',
+                    numOfVisited: 0,
+                    visited: false
+                },
+            ]
+        }
+    })
+</script>
+</html>

@@ -8,7 +8,7 @@
     <div class="container">
         <h1>Let's hear some stories!</h1>
         <ul class="list-group">
-            <story v-for="story in stories" :story="story"></story>
+            <story v-for="story in stories" :story="story" :favorite="favorite"></story>
         </ul>
         <pre>{{ $data }}</pre>
     </div>
@@ -20,6 +20,10 @@
         <button v-show="!story.voted" @click="visit" class="btn btn-default">
             Upvote
         </button>
+        <button v-show="!isFavorite" @click="setFavorite" class="btn btn-default">
+            Favorite
+        </button>
+        <span v-show="isFavorite" class="glyphicon glyphicon-star pull-right" aria-hidden="true"></span>
     </li>
 </template>
 </body>
@@ -27,12 +31,20 @@
 <script type="text/javascript">
     Vue.component('story', {
         template: "#story-template",
-        props: ['story'],
+        props: ['story', 'favorite'],
         methods: {
             visit: function () {
                 this.story.upvotes += 1;
                 this.story.voted = true;
             },
+            setFavorite: function () {
+                this.favorite = this.story;
+            }
+        },
+        computed: {
+            isFavorite: function () {
+                return this.story === this.favorite;
+            }
         }
     });
 
@@ -64,7 +76,8 @@
                     upvotes: 74,
                     voted: false,
                 },
-            ]
+            ],
+            favorite: {}
         }
     })
 </script>
