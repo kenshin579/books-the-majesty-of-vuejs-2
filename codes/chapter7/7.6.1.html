@@ -8,7 +8,7 @@
     <div class="container">
         <h1>Let's hear some stories!</h1>
         <ul class="list-group">
-            <story v-for="story in stories" :story="story" :favorite="favorite"></story>
+            <story v-for="story in stories" :story="story" :favorite="favorite" @update="updateFavorite"></story>
         </ul>
         <pre>{{ $data }}</pre>
     </div>
@@ -39,6 +39,9 @@
             },
             setFavorite: function () {
                 this.favorite = this.story;
+            },
+            updateFavorite: function () {
+                this.$emit('update', this.story)
             }
         },
         computed: {
@@ -78,6 +81,11 @@
                 },
             ],
             favorite: {}
+        },
+        methods: {
+            updateFavorite: function (story) {
+                this.favorite = story;
+            }
         }
     })
 </script>
